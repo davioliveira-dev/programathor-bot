@@ -22,7 +22,7 @@ export default async function opportunities(page) {
     return data;
   };
 
-  for (let i = 0; i < opportunitiesCount; i++) {
+  for (let i = 0; i < opportunitiesCount + 99999; i++) {
     const opportunity = await searchOpportunity();
 
     console.log(
@@ -34,7 +34,7 @@ export default async function opportunities(page) {
       opportunity.salary
     );
 
-    if (opportunity.salary && Number(opportunity.salary) < 10) {
+    if (Number(opportunity.salary) < 10) {
       console.log("aceitaaa!!!");
       await delay(5000);
       await page.click(
@@ -47,10 +47,10 @@ export default async function opportunities(page) {
       await page.reload();
     } else {
       console.log("recusada =(((");
-
       await delay(5000);
-      const [button] = await page.$x("//a[qcontains(., 'Recusar')]");
-      button.click();
+      await page.click(
+        "div.row.cell-candidate-matching .cell-candidate-matching-btn a.btn.btn-primary.btn-block"
+      );
       await page.waitForSelector("div.candidate-matching-header");
 
       await delay(5000);

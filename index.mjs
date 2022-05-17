@@ -4,7 +4,6 @@ import opportunities from "./src/utils/opportunities.mjs";
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: false,
     defaultViewport: { width: 1280, height: 720 },
     waitForInitialPage: true,
   });
